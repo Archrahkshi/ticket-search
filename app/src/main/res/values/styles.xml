@@ -1,10 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <style name="Text2">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
     <style name="TabText">
         <item name="android:textSize">10sp</item>
         <item name="android:gravity">center</item>
     </style>
     <style name="MenuBarButtonInactive" parent="TabText">
         <item name="android:textColor">@color/grey_6</item>
+    </style>
+    <style name="Title1">
+        <item name="android:textSize">22sp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    <style name="Title3">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    <style name="ButtonText1">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColorHint">@color/grey_6</item>
     </style>
 </resources>

@@ -5,6 +5,9 @@
     <string name="briefly">Короче</string>
     <string name="subscriptions">Подписки</string>
     <string name="profile">Профиль</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="search_for_cheap_tickets">Поиск дешевых\nавиабилетов</string>
+    <string name="search_icon">Значок поиска</string>
+    <string name="from_moscow">Откуда — Москва</string>
+    <string name="to_turkey">Куда — Турция</string>
+    <string name="concerts">Музыкально отлететь</string>
 </resources>
