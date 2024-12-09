@@ -7,9 +7,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
+import androidx.appcompat.content.res.AppCompatResources
+import androidx.appcompat.content.res.AppCompatResources.getDrawable
 import androidx.core.content.edit
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.DividerItemDecoration.VERTICAL
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.HORIZONTAL
@@ -48,6 +52,11 @@ class MainFragment : Fragment() {
                     }
                 )
             }
+            addItemDecoration(
+                DividerItemDecoration(requireActivity(), HORIZONTAL).apply {
+                    getDrawable(requireActivity(), R.drawable.divider)?.let(::setDrawable)
+                }
+            )
         }
     }
 }

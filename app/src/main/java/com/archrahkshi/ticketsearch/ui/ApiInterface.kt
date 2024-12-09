@@ -11,7 +11,7 @@ import retrofit2.create
 import retrofit2.http.GET
 
 private const val BASE_URL =
-    "https://github.com/Archrahkshi/ticket-search/tree/main/app/src/main/res/raw/"
+    "https://raw.githubusercontent.com/Archrahkshi/ticket-search/refs/heads/main/app/src/main/res/raw/"
 
 @OptIn(ExperimentalSerializationApi::class)
 val apiClient by lazy {
