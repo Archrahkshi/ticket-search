@@ -12,6 +12,7 @@
         android:layout_width="132dp"
         android:layout_height="132dp"
         android:background="@drawable/squircle_shape"
+        android:contentDescription="@string/concert_image"
         tools:srcCompat="@tools:sample/avatars" />
 
     <TextView

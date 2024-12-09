@@ -10,4 +10,5 @@
     <string name="from_moscow">Откуда — Москва</string>
     <string name="to_turkey">Куда — Турция</string>
     <string name="concerts">Музыкально отлететь</string>
+    <string name="concert_image">Изображение концерта</string>
 </resources>
