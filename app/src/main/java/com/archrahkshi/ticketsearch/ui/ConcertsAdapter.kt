@@ -12,7 +12,8 @@ import com.archrahkshi.ticketsearch.domain.FlattenedOffer
 
 class ConcertsAdapter(
     private val concerts: List<FlattenedOffer>,
-    private val images: List<Bitmap>
+    private val images: List<Bitmap>,
+    private val priceStringTemplate: String
 ) : RecyclerView.Adapter<ConcertsAdapter.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = ViewHolder(
         LayoutInflater.from(parent.context).inflate(R.layout.item_concert, parent, false)
@@ -23,7 +24,7 @@ class ConcertsAdapter(
             image.setImageBitmap(images[position])
             title.text = concerts[position].title
             location.text = concerts[position].town
-            cost.text = concerts[position].price.toString()
+            cost.text = priceStringTemplate.replace("{price}", concerts[position].price.toString())
         }
     }
 

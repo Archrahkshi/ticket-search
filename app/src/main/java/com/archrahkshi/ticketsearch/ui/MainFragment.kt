@@ -7,9 +7,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
+import androidx.appcompat.content.res.AppCompatResources.getDrawable
 import androidx.core.content.edit
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.HORIZONTAL
@@ -18,6 +20,7 @@ import com.archrahkshi.ticketsearch.domain.getOffers
 import kotlinx.coroutines.launch
 
 private const val SAVED_DEPARTURE_TEXT_KEY = "SAVED_DEPARTURE_TEXT"
+private const val PRICE_TEMPLATE = "{price}"
 
 class MainFragment : Fragment() {
     override fun onCreateView(
@@ -45,9 +48,15 @@ class MainFragment : Fragment() {
                     getOffers(),
                     listOf(R.raw.concert0, R.raw.concert1, R.raw.concert2).map {
                         decodeStream(resources.openRawResource(it))
-                    }
+                    },
+                    requireActivity().getString(R.string.concert_flight_price, PRICE_TEMPLATE)
                 )
             }
+            addItemDecoration(
+                DividerItemDecoration(requireActivity(), HORIZONTAL).apply {
+                    getDrawable(requireActivity(), R.drawable.divider)?.let(::setDrawable)
+                }
+            )
         }
     }
 }

@@ -13,8 +13,8 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:text="@string/tickets"
-        app:drawableTopCompat="@drawable/plane" />
+        android:drawableTop="@drawable/plane"
+        android:text="@string/tickets" />
 
     <TextView
         android:id="@+id/hotels_tab_title"
@@ -22,8 +22,8 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:text="@string/hotels"
-        app:drawableTopCompat="@drawable/bed" />
+        android:drawableTop="@drawable/bed"
+        android:text="@string/hotels" />
 
     <TextView
         android:id="@+id/pin_tab_title"
@@ -31,8 +31,8 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:text="@string/briefly"
-        app:drawableTopCompat="@drawable/pin" />
+        android:drawableTop="@drawable/pin"
+        android:text="@string/briefly" />
 
     <TextView
         android:id="@+id/subscriptions_tab_title"
@@ -40,8 +40,8 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:text="@string/subscriptions"
-        app:drawableTopCompat="@drawable/alert" />
+        android:drawableTop="@drawable/alert"
+        android:text="@string/subscriptions" />
 
     <TextView
         android:id="@+id/profile_tab_title"
@@ -49,7 +49,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:text="@string/profile"
-        app:drawableTopCompat="@drawable/profile" />
+        android:drawableTop="@drawable/profile"
+        android:text="@string/profile" />
 
 </LinearLayout>
