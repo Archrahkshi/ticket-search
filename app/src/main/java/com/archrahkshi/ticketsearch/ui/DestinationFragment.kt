@@ -6,38 +6,39 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.View.OnClickListener
 import android.view.ViewGroup
-import android.widget.EditText
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.annotation.RawRes
 import androidx.appcompat.content.res.AppCompatResources.getDrawable
-import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.VERTICAL
 import com.archrahkshi.ticketsearch.R
 import com.archrahkshi.ticketsearch.data.Destination
+import com.archrahkshi.ticketsearch.databinding.FragmentDestinationBinding
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
 class DestinationFragment : BottomSheetDialogFragment() {
+    private var _views: FragmentDestinationBinding? = null
+    private val views get() = _views!!
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? = inflater.inflate(R.layout.fragment_destination, container, false)
+    ): View {
+        _views = FragmentDestinationBinding.inflate(inflater, container, false)
+        return views.root
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        view.findViewById<TextView>(R.id.departure_text).text =
-            arguments?.getString(SAVED_DEPARTURE_TEXT_KEY, "")
-        val destinationTextField = view.findViewById<EditText>(R.id.destination_text_field)
-        view.findViewById<ImageView>(R.id.clear_icon).setOnClickListener {
-            destinationTextField.text.clear()
+        views.departureText.text = arguments?.getString(SAVED_DEPARTURE_TEXT_KEY, "")
+        views.clearIcon.setOnClickListener {
+            views.destinationTextField.text.clear()
         }
-        with(view.findViewById<RecyclerView>(R.id.popular_destinations)) {
+        with(views.popularDestinations) {
             layoutManager = LinearLayoutManager(context)
-            adapter = PopularDestinationsAdapter(getPopularDestinations(), destinationTextField)
+            adapter =
+                PopularDestinationsAdapter(getPopularDestinations(), views.destinationTextField)
             addItemDecoration(
                 DividerItemDecoration(context, VERTICAL).apply {
                     getDrawable(context, R.drawable.popular_destinations_list_divider)
@@ -52,14 +53,12 @@ class DestinationFragment : BottomSheetDialogFragment() {
                 .addToBackStack(null)
                 .commit()
         }
-        view.findViewById<TextView>(R.id.complex_route_view).setOnClickListener(nyiClickListener)
-        view.findViewById<TextView>(R.id.destination_wherever_view).setOnClickListener {
-            destinationTextField.setText(getPopularDestinations().map { it.title }.random())
+        views.complexRouteView.setOnClickListener(nyiClickListener)
+        views.destinationWhereverView.setOnClickListener {
+            views.destinationTextField.setText(getPopularDestinations().map { it.title }.random())
         }
-        view.findViewById<TextView>(R.id.weekend_view).setOnClickListener(nyiClickListener)
-        view.findViewById<TextView>(R.id.hot_tickets_view).setOnClickListener(nyiClickListener)
-
-        lifecycleScope
+        views.weekendView.setOnClickListener(nyiClickListener)
+        views.hotTicketsView.setOnClickListener(nyiClickListener)
     }
 
     private fun getPopularDestinations() = listOf(
@@ -70,4 +69,9 @@ class DestinationFragment : BottomSheetDialogFragment() {
 
     private fun rawToBitmap(@RawRes rawRes: Int) =
         decodeStream(resources.openRawResource(rawRes))
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _views = null
+    }
 }

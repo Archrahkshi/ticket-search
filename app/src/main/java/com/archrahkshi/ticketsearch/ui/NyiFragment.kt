@@ -1,16 +1,10 @@
 package com.archrahkshi.ticketsearch.ui
 
-import android.os.Bundle
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
-import com.archrahkshi.ticketsearch.R
+import com.archrahkshi.ticketsearch.databinding.FragmentNyiBinding
 
-class NyiFragment : Fragment() {
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? = inflater.inflate(R.layout.fragment_nyi, container, false)
+class NyiFragment : BaseFragment<FragmentNyiBinding>() {
+    override fun inflateBinding(inflater: LayoutInflater, container: ViewGroup?) =
+        FragmentNyiBinding.inflate(inflater, container, false)
 }
