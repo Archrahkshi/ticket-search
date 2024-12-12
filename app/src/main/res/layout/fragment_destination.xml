@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/grey_2"
+    android:padding="16dp">
+
+    <ImageView
+        android:id="@+id/pull_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/pull_icon"
+        android:src="@drawable/pull_icon"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/search_outer_box"
+        android:layout_width="match_parent"
+        android:layout_height="122dp"
+        android:layout_marginTop="25dp"
+        android:background="@drawable/rounded_rectangle_shape"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/pull_icon" />
+
+    <View
+        android:id="@+id/search_inner_box"
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        android:layout_margin="16dp"
+        android:background="@drawable/rounded_rectangle_shape"
+        android:backgroundTint="@color/grey_4"
+        app:layout_constraintBottom_toBottomOf="@id/search_outer_box"
+        app:layout_constraintEnd_toEndOf="@id/search_outer_box"
+        app:layout_constraintStart_toStartOf="@id/search_outer_box"
+        app:layout_constraintTop_toTopOf="@id/search_outer_box" />
+
+    <ImageView
+        android:id="@+id/plane_departure_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:contentDescription="@string/plane_departure_icon"
+        android:src="@drawable/plane_departure"
+        app:layout_constraintBottom_toTopOf="@id/search_box_separator"
+        app:layout_constraintStart_toStartOf="@id/search_inner_box"
+        app:layout_constraintTop_toTopOf="@id/search_inner_box" />
+
+    <ImageView
+        android:id="@+id/search_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:contentDescription="@string/search_icon"
+        android:src="@drawable/magnifying_glass"
+        app:layout_constraintBottom_toBottomOf="@id/search_inner_box"
+        app:layout_constraintStart_toStartOf="@id/search_inner_box"
+        app:layout_constraintTop_toBottomOf="@id/search_box_separator" />
+
+    <View
+        android:id="@+id/search_box_separator"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:alpha="0.6235"
+        android:background="@color/grey_6"
+        app:layout_constraintBottom_toBottomOf="@id/search_inner_box"
+        app:layout_constraintEnd_toEndOf="@id/search_inner_box"
+        app:layout_constraintStart_toStartOf="@id/search_inner_box"
+        app:layout_constraintTop_toTopOf="@id/search_inner_box" />
+
+    <TextView
+        android:id="@+id/departure_text"
+        style="@style/ButtonText1"
+        android:layout_width="0dp"
+        android:layout_height="44dp"
+        android:layout_marginStart="8dp"
+        android:background="@null"
+        android:gravity="center_vertical"
+        app:layout_constraintBottom_toTopOf="@id/search_box_separator"
+        app:layout_constraintEnd_toEndOf="@id/search_box_separator"
+        app:layout_constraintStart_toEndOf="@id/plane_departure_icon"
+        app:layout_constraintTop_toTopOf="@id/search_inner_box"
+        tools:text="Минск" />
+
+    <EditText
+        android:id="@+id/destination_text_field"
+        style="@style/ButtonText1"
+        android:layout_width="0dp"
+        android:layout_height="44dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:background="@null"
+        android:digits="АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯабвгдеёжзийклмнопрстуфхцчшщъыьэюя"
+        android:hint="@string/to_turkey"
+        android:inputType="text"
+        app:layout_constraintBottom_toBottomOf="@id/search_inner_box"
+        app:layout_constraintEnd_toStartOf="@+id/clear_icon"
+        app:layout_constraintStart_toEndOf="@id/search_icon"
+        app:layout_constraintTop_toBottomOf="@id/search_box_separator" />
+
+    <ImageView
+        android:id="@+id/clear_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/clear_icon"
+        android:src="@drawable/cross"
+        app:layout_constraintBottom_toBottomOf="@+id/search_inner_box"
+        app:layout_constraintEnd_toEndOf="@+id/search_box_separator"
+        app:layout_constraintTop_toBottomOf="@+id/search_box_separator" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="26dp"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/search_outer_box">
+
+        <TextView
+            android:id="@+id/complex_route_view"
+            style="@style/Text2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/complex_route"
+            android:gravity="center_horizontal"
+            android:text="@string/complex_route" />
+
+        <TextView
+            android:id="@+id/destination_wherever_view"
+            style="@style/Text2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/globe"
+            android:gravity="center_horizontal"
+            android:text="@string/wherever" />
+
+        <TextView
+            android:id="@+id/weekend_view"
+            style="@style/Text2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/calendar"
+            android:gravity="center_horizontal"
+            android:text="@string/weekend" />
+
+        <TextView
+            android:id="@+id/hot_tickets_view"
+            style="@style/Text2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/flame"
+            android:gravity="center_horizontal"
+            android:text="@string/hot_tickets" />
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/popular_destinations"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="26dp"
+        android:background="@drawable/rounded_rectangle_shape"
+        android:padding="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/linearLayout"
+        tools:listitem="@layout/item_popular_destination" />
+</androidx.constraintlayout.widget.ConstraintLayout>

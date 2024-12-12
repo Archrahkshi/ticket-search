@@ -1,6 +1,6 @@
 package com.archrahkshi.ticketsearch.domain
 
-import com.archrahkshi.ticketsearch.ui.apiClient
+import com.archrahkshi.ticketsearch.data.apiClient
 
 data class FlattenedOffer(val id: Int, val title: String, val town: String, val price: Int)
 

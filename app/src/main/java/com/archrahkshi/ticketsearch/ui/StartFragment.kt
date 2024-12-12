@@ -7,8 +7,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
+import android.widget.TextView
 import androidx.appcompat.content.res.AppCompatResources.getDrawable
 import androidx.core.content.edit
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -19,18 +21,19 @@ import com.archrahkshi.ticketsearch.R
 import com.archrahkshi.ticketsearch.domain.getOffers
 import kotlinx.coroutines.launch
 
-private const val SAVED_DEPARTURE_TEXT_KEY = "SAVED_DEPARTURE_TEXT"
+const val SAVED_DEPARTURE_TEXT_KEY = "SAVED_DEPARTURE_TEXT_KEY"
 private const val PRICE_TEMPLATE = "{price}"
 
-class MainFragment : Fragment() {
+class StartFragment : Fragment() {
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? = inflater.inflate(R.layout.fragment_main, container, false)
+    ): View? = inflater.inflate(R.layout.fragment_start, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        with(requireActivity().findViewById<EditText>(R.id.departure_text_field)) {
+        with(view.findViewById<EditText>(R.id.departure_text_field)) {
             val sharedPreferences = requireActivity().getPreferences(MODE_PRIVATE)
             setText(sharedPreferences.getString(SAVED_DEPARTURE_TEXT_KEY, ""))
             setOnFocusChangeListener { _, hasFocus ->
@@ -40,23 +43,33 @@ class MainFragment : Fragment() {
                     }
                 }
             }
+            view.findViewById<TextView>(R.id.destination_text).setOnClickListener {
+                if (text.isNotEmpty()) {
+                    DestinationFragment().apply {
+                        arguments = bundleOf(SAVED_DEPARTURE_TEXT_KEY to text.toString())
+                    }.show(parentFragmentManager, null)
+                }
+            }
         }
-        with(requireActivity().findViewById<RecyclerView>(R.id.concerts)) {
-            layoutManager = LinearLayoutManager(requireActivity(), HORIZONTAL, false)
+        with(view.findViewById<RecyclerView>(R.id.concerts)) {
+            layoutManager = LinearLayoutManager(context, HORIZONTAL, false)
             lifecycleScope.launch {
                 adapter = ConcertsAdapter(
                     getOffers(),
-                    listOf(R.raw.concert0, R.raw.concert1, R.raw.concert2).map {
-                        decodeStream(resources.openRawResource(it))
-                    },
+                    getImages(),
                     requireActivity().getString(R.string.concert_flight_price, PRICE_TEMPLATE)
                 )
             }
             addItemDecoration(
-                DividerItemDecoration(requireActivity(), HORIZONTAL).apply {
-                    getDrawable(requireActivity(), R.drawable.divider)?.let(::setDrawable)
+                DividerItemDecoration(context, HORIZONTAL).apply {
+                    getDrawable(context, R.drawable.concert_list_divider)?.let(::setDrawable)
                 }
             )
         }
     }
+
+    private fun getImages() =
+        listOf(R.raw.concert0, R.raw.concert1, R.raw.concert2).map {
+            decodeStream(resources.openRawResource(it))
+        }
 }
