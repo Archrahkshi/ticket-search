@@ -19,4 +19,6 @@
     <string name="hot_tickets">Горячие\nбилеты</string>
     <string name="popular_destination_image">Изображение популярного направления</string>
     <string name="nyi">Мы пока не реализовали этот функционал, но это обязательно случится</string>
+    <string name="pull_icon">Значок для оттягивания экрана</string>
+    <string name="clear_icon">Значок очистки текстового поля</string>
 </resources>

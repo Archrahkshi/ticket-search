@@ -1,6 +1,5 @@
 package com.archrahkshi.ticketsearch.ui
 
-import android.app.ProgressDialog.show
 import android.content.Context.MODE_PRIVATE
 import android.graphics.BitmapFactory.decodeStream
 import android.os.Bundle
