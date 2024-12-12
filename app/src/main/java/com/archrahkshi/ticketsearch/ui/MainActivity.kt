@@ -5,11 +5,11 @@ import androidx.appcompat.app.AppCompatActivity
 import com.archrahkshi.ticketsearch.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
-    private lateinit var binding: ActivityMainBinding
+    private lateinit var views: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+        views = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(views.root)
     }
 }
