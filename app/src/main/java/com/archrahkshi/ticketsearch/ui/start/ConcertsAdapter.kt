@@ -1,4 +1,4 @@
-package com.archrahkshi.ticketsearch.ui
+package com.archrahkshi.ticketsearch.ui.start
 
 import android.graphics.Bitmap
 import android.view.LayoutInflater
@@ -8,7 +8,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.archrahkshi.ticketsearch.R
-import com.archrahkshi.ticketsearch.domain.FlattenedOffer
+import com.archrahkshi.ticketsearch.data.vo.FlattenedOffer
 
 class ConcertsAdapter(
     private val concerts: List<FlattenedOffer>,

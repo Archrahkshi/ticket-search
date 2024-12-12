@@ -1,4 +1,4 @@
-package com.archrahkshi.ticketsearch.ui
+package com.archrahkshi.ticketsearch.ui.destination
 
 import android.graphics.BitmapFactory.decodeStream
 import android.os.Bundle
@@ -12,8 +12,10 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView.VERTICAL
 import com.archrahkshi.ticketsearch.R
-import com.archrahkshi.ticketsearch.data.Destination
+import com.archrahkshi.ticketsearch.data.vo.Destination
 import com.archrahkshi.ticketsearch.databinding.FragmentDestinationBinding
+import com.archrahkshi.ticketsearch.ui.NyiFragment
+import com.archrahkshi.ticketsearch.ui.start.SAVED_DEPARTURE_TEXT_KEY
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
 class DestinationFragment : BottomSheetDialogFragment() {

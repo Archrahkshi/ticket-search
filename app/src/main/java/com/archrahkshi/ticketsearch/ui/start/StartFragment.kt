@@ -1,4 +1,4 @@
-package com.archrahkshi.ticketsearch.ui
+package com.archrahkshi.ticketsearch.ui.start
 
 import android.content.Context.MODE_PRIVATE
 import android.graphics.BitmapFactory.decodeStream
@@ -15,22 +15,23 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView.HORIZONTAL
 import com.archrahkshi.ticketsearch.R
 import com.archrahkshi.ticketsearch.databinding.FragmentStartBinding
-import com.archrahkshi.ticketsearch.domain.getOffers
+import com.archrahkshi.ticketsearch.ui.BaseFragment
+import com.archrahkshi.ticketsearch.ui.destination.DestinationFragment
 import kotlinx.coroutines.launch
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 const val SAVED_DEPARTURE_TEXT_KEY = "SAVED_DEPARTURE_TEXT_KEY"
 private const val PRICE_TEMPLATE = "{price}"
 
 class StartFragment : BaseFragment<FragmentStartBinding>() {
-    private var _binding: FragmentStartBinding? = null
-    private val binding get() = _binding!!
+    private val viewModel: StartViewModel by viewModel()
 
     override fun inflateBinding(inflater: LayoutInflater, container: ViewGroup?) =
         FragmentStartBinding.inflate(inflater, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        with(binding.departureTextField) {
+        with(views.departureTextField) {
             val sharedPreferences = requireActivity().getPreferences(MODE_PRIVATE)
             setText(sharedPreferences.getString(SAVED_DEPARTURE_TEXT_KEY, ""))
             setOnFocusChangeListener { _, hasFocus ->
@@ -40,7 +41,7 @@ class StartFragment : BaseFragment<FragmentStartBinding>() {
                     }
                 }
             }
-            binding.destinationText.setOnClickListener {
+            views.destinationText.setOnClickListener {
                 if (text.isNotEmpty()) {
                     DestinationFragment().apply {
                         arguments = bundleOf(SAVED_DEPARTURE_TEXT_KEY to text.toString())
@@ -48,11 +49,11 @@ class StartFragment : BaseFragment<FragmentStartBinding>() {
                 }
             }
         }
-        with(binding.concerts) {
+        with(views.concerts) {
             layoutManager = LinearLayoutManager(context, HORIZONTAL, false)
             lifecycleScope.launch {
                 adapter = ConcertsAdapter(
-                    getOffers(),
+                    viewModel.getOffers(),
                     getImages(),
                     context.getString(R.string.concert_flight_price, PRICE_TEMPLATE)
                 )

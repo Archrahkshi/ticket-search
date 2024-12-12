@@ -1,4 +1,4 @@
-package com.archrahkshi.ticketsearch.ui
+package com.archrahkshi.ticketsearch.ui.destination
 
 import android.view.LayoutInflater
 import android.view.View
@@ -9,7 +9,7 @@ import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.archrahkshi.ticketsearch.R
-import com.archrahkshi.ticketsearch.data.Destination
+import com.archrahkshi.ticketsearch.data.vo.Destination
 
 class PopularDestinationsAdapter(
     private val popularDestinations: List<Destination>,
