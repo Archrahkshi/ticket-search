@@ -24,7 +24,8 @@ class ConcertsAdapter(
             image.setImageBitmap(images[position])
             title.text = concerts[position].title
             location.text = concerts[position].town
-            cost.text = priceStringTemplate.replace("{price}", concerts[position].price.toString())
+            cost.text =
+                priceStringTemplate.replace("{price}", concerts[position].price.toString())
         }
     }
 

@@ -12,4 +12,11 @@
     <string name="concerts">Музыкально отлететь</string>
     <string name="concert_image">Изображение концерта</string>
     <string name="concert_flight_price">%s ₽</string>
+    <string name="plane_departure_icon">Значок вылета</string>
+    <string name="complex_route">Сложный\nмаршрут</string>
+    <string name="wherever">Куда угодно</string>
+    <string name="weekend">Выходные</string>
+    <string name="hot_tickets">Горячие\nбилеты</string>
+    <string name="popular_destination_image">Изображение популярного направления</string>
+    <string name="nyi">Мы пока не реализовали этот функционал, но это обязательно случится</string>
 </resources>

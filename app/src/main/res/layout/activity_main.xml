@@ -7,11 +7,11 @@
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragment_container"
-        android:name="com.archrahkshi.ticketsearch.ui.MainFragment"
+        android:name="com.archrahkshi.ticketsearch.ui.StartFragment"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        tools:layout="@layout/fragment_main" />
+        tools:layout="@layout/fragment_start" />
 
     <include
         android:id="@+id/menu_bar"

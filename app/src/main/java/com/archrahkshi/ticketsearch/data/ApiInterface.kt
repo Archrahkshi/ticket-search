@@ -1,7 +1,6 @@
-package com.archrahkshi.ticketsearch.ui
+package com.archrahkshi.ticketsearch.data
 
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
-import com.archrahkshi.ticketsearch.data.Offers
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonNamingStrategy.Builtins.SnakeCase
