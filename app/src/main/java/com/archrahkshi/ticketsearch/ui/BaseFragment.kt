@@ -9,7 +9,7 @@ import androidx.viewbinding.ViewBinding
 
 abstract class BaseFragment<Binding : ViewBinding> : Fragment() {
     private var _views: Binding? = null
-    private val views get() = _views!!
+    protected val views get() = _views!!
 
     abstract fun inflateBinding(inflater: LayoutInflater, container: ViewGroup?): Binding
 
