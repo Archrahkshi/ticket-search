@@ -7,7 +7,7 @@
     android:orientation="horizontal">
 
     <TextView
-        android:id="@+id/tickets_tab_title"
+        android:id="@+id/tickets_tab"
         style="@style/MenuBarButtonInactive"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -16,7 +16,7 @@
         android:text="@string/tickets" />
 
     <TextView
-        android:id="@+id/hotels_tab_title"
+        android:id="@+id/hotels_tab"
         style="@style/MenuBarButtonInactive"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -25,7 +25,7 @@
         android:text="@string/hotels" />
 
     <TextView
-        android:id="@+id/pin_tab_title"
+        android:id="@+id/pin_tab"
         style="@style/MenuBarButtonInactive"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -34,7 +34,7 @@
         android:text="@string/briefly" />
 
     <TextView
-        android:id="@+id/subscriptions_tab_title"
+        android:id="@+id/subscriptions_tab"
         style="@style/MenuBarButtonInactive"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -43,7 +43,7 @@
         android:text="@string/subscriptions" />
 
     <TextView
-        android:id="@+id/profile_tab_title"
+        android:id="@+id/profile_tab"
         style="@style/MenuBarButtonInactive"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
