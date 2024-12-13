@@ -11,7 +11,7 @@
     <string name="to_turkey">Куда — Турция</string>
     <string name="concerts">Музыкально отлететь</string>
     <string name="concert_image">Изображение концерта</string>
-    <string name="concert_flight_price">%s ₽</string>
+    <string name="price_template">%s ₽</string>
     <string name="plane_departure_icon">Значок вылета</string>
     <string name="complex_route">Сложный\nмаршрут</string>
     <string name="wherever">Куда угодно</string>

@@ -14,6 +14,7 @@ import com.archrahkshi.ticketsearch.databinding.FragmentSearchBinding
 import com.archrahkshi.ticketsearch.ui.BaseFragment
 import com.archrahkshi.ticketsearch.ui.DEPARTURE_TEXT_KEY
 import com.archrahkshi.ticketsearch.ui.DESTINATION_TEXT_KEY
+import com.archrahkshi.ticketsearch.ui.applyPriceTemplate
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.util.Calendar
@@ -76,13 +77,13 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>() {
             lifecycleScope.launch {
                 val ticketOffers = viewModel.getTicketOffers()
                 airline1.title.text = ticketOffers[0].title
-                airline1.price.text = ticketOffers[0].price.toString()
+                airline1.price.text = applyPriceTemplate(view.context, ticketOffers[0].price)
                 airline1.departures.text = ticketOffers[0].timeRange.joinToString(" ")
                 airline2.title.text = ticketOffers[1].title
-                airline2.price.text = ticketOffers[1].price.toString()
+                airline2.price.text = applyPriceTemplate(view.context, ticketOffers[1].price)
                 airline2.departures.text = ticketOffers[1].timeRange.joinToString(" ")
                 airline3.title.text = ticketOffers[2].title
-                airline3.price.text = ticketOffers[2].price.toString()
+                airline3.price.text = applyPriceTemplate(view.context, ticketOffers[2].price)
                 airline3.departures.text = ticketOffers[2].timeRange.joinToString(" ")
             }
         }

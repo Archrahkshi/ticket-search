@@ -6,11 +6,11 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.archrahkshi.ticketsearch.data.vo.FlattenedOffer
 import com.archrahkshi.ticketsearch.databinding.ItemConcertBinding
+import com.archrahkshi.ticketsearch.ui.applyPriceTemplate
 
 class ConcertsAdapter(
     private val concerts: List<FlattenedOffer>,
-    private val images: List<Bitmap>,
-    private val priceStringTemplate: String
+    private val images: List<Bitmap>
 ) : RecyclerView.Adapter<ConcertsAdapter.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = ViewHolder(
         ItemConcertBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -29,7 +29,7 @@ class ConcertsAdapter(
             this.image.setImageBitmap(image)
             title.text = concert.title
             town.text = concert.town
-            price.text = priceStringTemplate.replace("{price}", concert.price.toString())
+            price.text = applyPriceTemplate(price.context, concert.price)
         }
     }
 }

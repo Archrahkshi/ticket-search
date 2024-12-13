@@ -21,8 +21,6 @@ import com.archrahkshi.ticketsearch.ui.destination.DestinationFragment
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-private const val PRICE_TEMPLATE = "{price}"
-
 class StartFragment : BaseFragment<FragmentStartBinding>() {
     private val viewModel: StartViewModel by viewModel()
 
@@ -52,11 +50,7 @@ class StartFragment : BaseFragment<FragmentStartBinding>() {
         with(views.concerts) {
             layoutManager = LinearLayoutManager(context, HORIZONTAL, false)
             lifecycleScope.launch {
-                adapter = ConcertsAdapter(
-                    viewModel.getOffers(),
-                    getImages(),
-                    context.getString(R.string.concert_flight_price, PRICE_TEMPLATE)
-                )
+                adapter = ConcertsAdapter(viewModel.getOffers(), getImages())
             }
             addItemDecoration(
                 DividerItemDecoration(context, HORIZONTAL).apply {
