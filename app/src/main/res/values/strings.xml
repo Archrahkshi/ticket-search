@@ -18,7 +18,20 @@
     <string name="weekend">Выходные</string>
     <string name="hot_tickets">Горячие\nбилеты</string>
     <string name="popular_destination_image">Изображение популярного направления</string>
+    <string name="istanbul">Стамбул</string>
+    <string name="sochi">Сочи</string>
+    <string name="phuket">Пхукет</string>
+    <string name="popular_destination">Популярное направление</string>
     <string name="nyi">Мы пока не реализовали этот функционал, но это обязательно случится</string>
     <string name="pull_icon">Значок для оттягивания экрана</string>
     <string name="clear_icon">Значок очистки текстового поля</string>
+    <string name="plus_icon">Значок добавления</string>
+    <string name="change_direction_icon">Значок изменения направления</string>
+    <string name="direct_flights">Прямые рейсы</string>
+    <string name="view_all_tickets">Посмотреть все билеты</string>
+    <string name="back">обратно</string>
+    <string name="economy">эконом</string>
+    <string name="filters">фильтры</string>
+    <string name="passenger_placeholder">1, %s</string>
+    <string name="airline_logo">Логотип авиакомпании</string>
 </resources>
