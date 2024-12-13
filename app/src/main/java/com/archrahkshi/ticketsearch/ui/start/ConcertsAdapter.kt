@@ -2,13 +2,10 @@ package com.archrahkshi.ticketsearch.ui.start
 
 import android.graphics.Bitmap
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.archrahkshi.ticketsearch.R
 import com.archrahkshi.ticketsearch.data.vo.FlattenedOffer
+import com.archrahkshi.ticketsearch.databinding.ItemConcertBinding
 
 class ConcertsAdapter(
     private val concerts: List<FlattenedOffer>,
@@ -16,25 +13,23 @@ class ConcertsAdapter(
     private val priceStringTemplate: String
 ) : RecyclerView.Adapter<ConcertsAdapter.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = ViewHolder(
-        LayoutInflater.from(parent.context).inflate(R.layout.item_concert, parent, false)
+        ItemConcertBinding.inflate(LayoutInflater.from(parent.context), parent, false)
     )
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        with(holder) {
-            image.setImageBitmap(images[position])
-            title.text = concerts[position].title
-            location.text = concerts[position].town
-            cost.text =
-                priceStringTemplate.replace("{price}", concerts[position].price.toString())
-        }
+        holder.bind(concerts[position], images[position])
     }
 
     override fun getItemCount() = concerts.size
 
-    class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val image: ImageView = view.findViewById(R.id.concert_image)
-        val title: TextView = view.findViewById(R.id.concert_title)
-        val location: TextView = view.findViewById(R.id.concert_location)
-        val cost: TextView = view.findViewById(R.id.concert_flight_cost)
+    inner class ViewHolder(
+        private val views: ItemConcertBinding
+    ) : RecyclerView.ViewHolder(views.root) {
+        fun bind(concert: FlattenedOffer, image: Bitmap) = with(views) {
+            this.image.setImageBitmap(image)
+            title.text = concert.title
+            town.text = concert.town
+            price.text = priceStringTemplate.replace("{price}", concert.price.toString())
+        }
     }
 }

@@ -1,6 +1,7 @@
 package com.archrahkshi.ticketsearch.core
 
 import com.archrahkshi.ticketsearch.data.dto.Offers
+import com.archrahkshi.ticketsearch.data.dto.TicketsOffers
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.json.Json
@@ -11,7 +12,7 @@ import retrofit2.create
 import retrofit2.http.GET
 
 private const val BASE_URL =
-    "https://raw.githubusercontent.com/Archrahkshi/ticket-search/refs/heads/main/app/src/main/res/raw/"
+    "https://raw.githubusercontent.com/Archrahkshi/ticket-search/refs/heads/main/app/src/main/assets/"
 
 @OptIn(ExperimentalSerializationApi::class)
 val apiClient by lazy {
@@ -24,5 +25,8 @@ val apiClient by lazy {
 
 interface ApiInterface {
     @GET("offers.json")
-    suspend fun getOffers(): Offers
+    suspend fun getConcertOffers(): Offers
+
+    @GET("offers_tickets.json")
+    suspend fun getTicketOffers(): TicketsOffers
 }

@@ -16,11 +16,11 @@ import androidx.recyclerview.widget.RecyclerView.HORIZONTAL
 import com.archrahkshi.ticketsearch.R
 import com.archrahkshi.ticketsearch.databinding.FragmentStartBinding
 import com.archrahkshi.ticketsearch.ui.BaseFragment
+import com.archrahkshi.ticketsearch.ui.DEPARTURE_TEXT_KEY
 import com.archrahkshi.ticketsearch.ui.destination.DestinationFragment
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-const val SAVED_DEPARTURE_TEXT_KEY = "SAVED_DEPARTURE_TEXT_KEY"
 private const val PRICE_TEMPLATE = "{price}"
 
 class StartFragment : BaseFragment<FragmentStartBinding>() {
@@ -33,18 +33,18 @@ class StartFragment : BaseFragment<FragmentStartBinding>() {
         super.onViewCreated(view, savedInstanceState)
         with(views.departureTextField) {
             val sharedPreferences = requireActivity().getPreferences(MODE_PRIVATE)
-            setText(sharedPreferences.getString(SAVED_DEPARTURE_TEXT_KEY, ""))
+            setText(sharedPreferences.getString(DEPARTURE_TEXT_KEY, ""))
             setOnFocusChangeListener { _, hasFocus ->
                 if (!hasFocus) {
                     sharedPreferences.edit {
-                        putString(SAVED_DEPARTURE_TEXT_KEY, text.toString())
+                        putString(DEPARTURE_TEXT_KEY, text.toString())
                     }
                 }
             }
             views.destinationText.setOnClickListener {
                 if (text.isNotEmpty()) {
                     DestinationFragment().apply {
-                        arguments = bundleOf(SAVED_DEPARTURE_TEXT_KEY to text.toString())
+                        arguments = bundleOf(DEPARTURE_TEXT_KEY to text.toString())
                     }.show(parentFragmentManager, null)
                 }
             }
