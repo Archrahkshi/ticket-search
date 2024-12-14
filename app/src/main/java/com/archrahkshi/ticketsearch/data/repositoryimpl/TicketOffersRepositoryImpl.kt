@@ -1,6 +1,6 @@
 package com.archrahkshi.ticketsearch.data.repositoryimpl
 
-import com.archrahkshi.ticketsearch.core.apiClient
+import com.archrahkshi.ticketsearch.core.network.apiClient
 import com.archrahkshi.ticketsearch.data.vo.FlattenedTicketOffer
 import com.archrahkshi.ticketsearch.domain.repository.TicketOffersRepository
 

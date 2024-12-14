@@ -29,53 +29,41 @@
         app:layout_constraintStart_toStartOf="@id/search_outer_box"
         app:layout_constraintTop_toTopOf="@id/search_outer_box" />
 
-    <ImageView
-        android:id="@+id/plane_departure_icon"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:contentDescription="@string/plane_departure_icon"
-        android:src="@drawable/plane_departure"
-        app:layout_constraintBottom_toTopOf="@id/search_box_separator"
-        app:layout_constraintStart_toStartOf="@id/search_inner_box"
-        app:layout_constraintTop_toTopOf="@id/search_inner_box" />
-
-    <ImageView
-        android:id="@+id/search_icon"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:contentDescription="@string/search_icon"
-        android:src="@drawable/magnifying_glass"
-        app:layout_constraintBottom_toBottomOf="@id/search_inner_box"
-        app:layout_constraintStart_toStartOf="@id/search_inner_box"
-        app:layout_constraintTop_toBottomOf="@id/search_box_separator" />
-
     <View
         android:id="@+id/search_box_separator"
         android:layout_width="0dp"
         android:layout_height="1dp"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="8dp"
         android:layout_marginEnd="16dp"
         android:alpha="0.6235"
         android:background="@color/grey_6"
         app:layout_constraintBottom_toBottomOf="@id/search_inner_box"
         app:layout_constraintEnd_toEndOf="@id/search_inner_box"
-        app:layout_constraintStart_toStartOf="@id/search_inner_box"
+        app:layout_constraintStart_toEndOf="@+id/back_arrow"
         app:layout_constraintTop_toTopOf="@id/search_inner_box" />
+
+    <ImageView
+        android:id="@+id/back_arrow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:contentDescription="@string/back_arrow"
+        app:layout_constraintBottom_toBottomOf="@+id/search_inner_box"
+        app:layout_constraintStart_toStartOf="@+id/search_inner_box"
+        app:layout_constraintTop_toTopOf="@+id/search_inner_box"
+        app:srcCompat="@drawable/back_arrow" />
 
     <TextView
         android:id="@+id/departure_text"
         style="@style/ButtonText1"
         android:layout_width="0dp"
         android:layout_height="44dp"
-        android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:background="@null"
         android:gravity="center_vertical"
         app:layout_constraintBottom_toTopOf="@id/search_box_separator"
         app:layout_constraintEnd_toStartOf="@+id/change_direction_icon"
-        app:layout_constraintStart_toEndOf="@id/plane_departure_icon"
+        app:layout_constraintStart_toStartOf="@+id/search_box_separator"
         app:layout_constraintTop_toTopOf="@id/search_inner_box"
         tools:text="Минск" />
 
@@ -84,16 +72,17 @@
         style="@style/ButtonText1"
         android:layout_width="0dp"
         android:layout_height="44dp"
-        android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:background="@null"
         android:digits="АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯабвгдеёжзийклмнопрстуфхцчшщъыьэюя"
         android:hint="@string/to_turkey"
+        android:importantForAutofill="no"
         android:inputType="text"
         app:layout_constraintBottom_toBottomOf="@id/search_inner_box"
         app:layout_constraintEnd_toStartOf="@+id/clear_icon"
-        app:layout_constraintStart_toEndOf="@id/search_icon"
-        app:layout_constraintTop_toBottomOf="@id/search_box_separator" />
+        app:layout_constraintStart_toStartOf="@+id/search_box_separator"
+        app:layout_constraintTop_toBottomOf="@id/search_box_separator"
+        tools:ignore="TouchTargetSizeCheck" />
 
     <ImageView
         android:id="@+id/change_direction_icon"

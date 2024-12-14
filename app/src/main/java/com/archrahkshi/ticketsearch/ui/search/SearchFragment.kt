@@ -7,23 +7,31 @@ import android.text.style.ForegroundColorSpan
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.bundle.bundleOf
 import androidx.core.view.isVisible
+import androidx.fragment.app.commit
 import androidx.lifecycle.lifecycleScope
 import com.archrahkshi.ticketsearch.R
+import com.archrahkshi.ticketsearch.core.getDefaultLocale
 import com.archrahkshi.ticketsearch.databinding.FragmentSearchBinding
 import com.archrahkshi.ticketsearch.ui.BaseFragment
+import com.archrahkshi.ticketsearch.ui.DEPARTURE_DATE_KEY
 import com.archrahkshi.ticketsearch.ui.DEPARTURE_TEXT_KEY
 import com.archrahkshi.ticketsearch.ui.DESTINATION_TEXT_KEY
+import com.archrahkshi.ticketsearch.ui.PASSENGER_COUNT_KEY
 import com.archrahkshi.ticketsearch.ui.applyPriceTemplate
+import com.archrahkshi.ticketsearch.ui.tickets.TicketsFragment
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Calendar.DAY_OF_MONTH
 import java.util.Calendar.MONTH
 import java.util.Calendar.YEAR
+import java.util.Date
 
 class SearchFragment : BaseFragment<FragmentSearchBinding>() {
-    private val viewModel: SearchViewModel by viewModel()
+    private val viewModel by viewModel<SearchViewModel>()
 
     override fun inflateBinding(inflater: LayoutInflater, container: ViewGroup?) =
         FragmentSearchBinding.inflate(inflater, container, false)
@@ -32,6 +40,9 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>() {
         super.onViewCreated(view, savedInstanceState)
         with(views) {
             // Setup directions
+            backArrow.setOnClickListener {
+                parentFragmentManager.popBackStack()
+            }
             departureText.text = arguments?.getString(DEPARTURE_TEXT_KEY, "")
             destinationTextField.setText(arguments?.getString(DESTINATION_TEXT_KEY, ""))
             changeDirectionIcon.setOnClickListener {
@@ -49,24 +60,26 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>() {
                 chooseDate(view)
             }
             returnDate.icon.setImageResource(R.drawable.plus)
-            returnDate.title.text = viewModel.selectedReturnDate.value?.ifEmpty {
+            returnDate.title.text = viewModel.selectedReturnDate.value?.let {
                 getString(R.string.back)
             }
             viewModel.selectedReturnDate.observe(viewLifecycleOwner) {
-                if (it.isNotEmpty()) {
-                    returnDate.title.text = getColoredDate(it)
-                }
+                returnDate.title.text = it?.let(::getColoredDate) ?: getString(R.string.back)
             }
             returnDate.container.setOnClickListener { view ->
                 chooseDate(view, true)
             }
             returnDate.container.setOnLongClickListener {
-                viewModel.unsetReturnDate(getString(R.string.back))
+                viewModel.unsetReturnDate()
                 true
             }
             passengers.icon.setImageResource(R.drawable.passenger)
-            passengers.title.text =
-                getString(R.string.passenger_placeholder, getString(R.string.economy))
+            val passengerCount = 1
+            passengers.title.text = getString(
+                R.string.passenger_placeholder,
+                passengerCount,
+                getString(R.string.economy)
+            )
             filters.icon.setImageResource(R.drawable.filter)
             filters.title.text = getString(R.string.filters)
 
@@ -85,6 +98,22 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>() {
                 airline3.title.text = ticketOffers[2].title
                 airline3.price.text = applyPriceTemplate(view.context, ticketOffers[2].price)
                 airline3.departures.text = ticketOffers[2].timeRange.joinToString(" ")
+            }
+
+            viewAllTickets.setOnClickListener {
+                parentFragmentManager.commit {
+                    add(
+                        R.id.fragment_container,
+                        TicketsFragment::class.java,
+                        bundleOf(
+                            DEPARTURE_TEXT_KEY to views.departureText.text,
+                            DESTINATION_TEXT_KEY to views.destinationTextField.text.toString(),
+                            DEPARTURE_DATE_KEY to getLongDate(viewModel.selectedDepartureDate.value),
+                            PASSENGER_COUNT_KEY to passengerCount
+                        )
+                    )
+                    addToBackStack(null)
+                }
             }
         }
     }
@@ -107,12 +136,21 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>() {
         ).show()
     }
 
-    private fun getColoredDate(text: String) = SpannableString(text).apply {
-        setSpan(
-            ForegroundColorSpan(requireContext().getColor(R.color.grey_6)),
-            text.indexOf(','),
-            text.length,
-            0
-        )
-    }.toString()
+    private fun getColoredDate(date: Date) =
+        SimpleDateFormat("dd MMM, E", getDefaultLocale())
+            .format(date)
+            .replace(".", "")
+            .let {
+                SpannableString(it).apply {
+                    setSpan(
+                        ForegroundColorSpan(requireContext().getColor(R.color.grey_6)),
+                        it.indexOf(','),
+                        it.length,
+                        0
+                    )
+                }.toString()
+            }
+
+    private fun getLongDate(date: Date?) =
+        date?.let { SimpleDateFormat("dd MMMM", getDefaultLocale()).format(it) }.orEmpty()
 }

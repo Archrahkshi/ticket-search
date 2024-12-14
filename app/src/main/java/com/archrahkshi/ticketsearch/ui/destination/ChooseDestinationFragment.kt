@@ -15,15 +15,15 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView.VERTICAL
 import com.archrahkshi.ticketsearch.R
 import com.archrahkshi.ticketsearch.data.vo.Destination
-import com.archrahkshi.ticketsearch.databinding.FragmentDestinationBinding
+import com.archrahkshi.ticketsearch.databinding.FragmentChooseDestinationBinding
 import com.archrahkshi.ticketsearch.ui.DEPARTURE_TEXT_KEY
 import com.archrahkshi.ticketsearch.ui.DESTINATION_TEXT_KEY
 import com.archrahkshi.ticketsearch.ui.NyiFragment
 import com.archrahkshi.ticketsearch.ui.search.SearchFragment
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
-class DestinationFragment : BottomSheetDialogFragment() {
-    private var _views: FragmentDestinationBinding? = null
+class ChooseDestinationFragment : BottomSheetDialogFragment() {
+    private var _views: FragmentChooseDestinationBinding? = null
     private val views get() = _views!!
 
     override fun onCreateView(
@@ -31,7 +31,7 @@ class DestinationFragment : BottomSheetDialogFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _views = FragmentDestinationBinding.inflate(inflater, container, false)
+        _views = FragmentChooseDestinationBinding.inflate(inflater, container, false)
         return views.root
     }
 

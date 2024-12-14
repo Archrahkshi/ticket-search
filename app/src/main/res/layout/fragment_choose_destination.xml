@@ -172,9 +172,11 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="26dp"
         android:background="@drawable/rounded_rectangle_shape"
+        android:clipToPadding="false"
         android:padding="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/linearLayout"
+        tools:itemCount="3"
         tools:listitem="@layout/item_popular_destination" />
 </androidx.constraintlayout.widget.ConstraintLayout>
