@@ -17,12 +17,12 @@ import com.archrahkshi.ticketsearch.R
 import com.archrahkshi.ticketsearch.databinding.FragmentStartBinding
 import com.archrahkshi.ticketsearch.ui.BaseFragment
 import com.archrahkshi.ticketsearch.ui.DEPARTURE_TEXT_KEY
-import com.archrahkshi.ticketsearch.ui.destination.DestinationFragment
+import com.archrahkshi.ticketsearch.ui.destination.ChooseDestinationFragment
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class StartFragment : BaseFragment<FragmentStartBinding>() {
-    private val viewModel: StartViewModel by viewModel()
+    private val viewModel by viewModel<StartViewModel>()
 
     override fun inflateBinding(inflater: LayoutInflater, container: ViewGroup?) =
         FragmentStartBinding.inflate(inflater, container, false)
@@ -41,7 +41,7 @@ class StartFragment : BaseFragment<FragmentStartBinding>() {
             }
             views.destinationText.setOnClickListener {
                 if (text.isNotEmpty()) {
-                    DestinationFragment().apply {
+                    ChooseDestinationFragment().apply {
                         arguments = bundleOf(DEPARTURE_TEXT_KEY to text.toString())
                     }.show(parentFragmentManager, null)
                 }

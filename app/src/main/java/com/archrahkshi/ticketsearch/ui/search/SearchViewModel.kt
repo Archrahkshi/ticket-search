@@ -9,27 +9,27 @@ import java.util.Date
 import java.util.Locale
 
 class SearchViewModel(private val ticketOffersRepository: TicketOffersRepository) : ViewModel() {
-    private val _selectedDate = MutableLiveData(formatDate(Date()))
-    val selectedDepartureDate: LiveData<String> get() = _selectedDate
+    private val _selectedDepartureDate = MutableLiveData(Date())
+    val selectedDepartureDate: LiveData<Date> get() = _selectedDepartureDate
 
-    private val _selectedReturnDate = MutableLiveData("")
-    val selectedReturnDate: LiveData<String> get() = _selectedReturnDate
+    private val _selectedReturnDate = MutableLiveData<Date?>()
+    val selectedReturnDate: LiveData<Date?> get() = _selectedReturnDate
 
     private fun formatDate(date: Date): String =
-        SimpleDateFormat("dd MMM, E", Locale("ru"))
+        SimpleDateFormat("dd MMM, E", Locale.getDefault())
             .format(date)
             .replace(".", "")
 
     fun updateDate(date: Date) {
-        _selectedDate.value = formatDate(date)
+        _selectedDepartureDate.value = date
     }
 
     fun updateReturnDate(date: Date) {
-        _selectedReturnDate.value = formatDate(date)
+        _selectedReturnDate.value = date
     }
 
-    fun unsetReturnDate(text: String) {
-        _selectedReturnDate.value = text
+    fun unsetReturnDate() {
+        _selectedReturnDate.value = null
     }
 
     suspend fun getTicketOffers() = ticketOffersRepository.getTicketOffers()

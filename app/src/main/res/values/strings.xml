@@ -32,6 +32,18 @@
     <string name="back">обратно</string>
     <string name="economy">эконом</string>
     <string name="filters">фильтры</string>
-    <string name="passenger_placeholder">1, %s</string>
+    <string name="passenger_placeholder">%d, %s</string>
     <string name="airline_logo">Логотип авиакомпании</string>
+    <string name="back_arrow">Значок возврата</string>
+    <string name="dash">—</string>
+    <plurals name="passengers">
+        <item quantity="one">%d пассажир</item>
+        <item quantity="few">%d пассажира</item>
+        <item quantity="other">%d пассажиров</item>
+    </plurals>
+    <string name="en_route">в пути</string>
+    <string name="slash">/</string>
+    <string name="no_transfer">без пересадок</string>
+    <string name="filter">Фильтр</string>
+    <string name="price_graph">График цен</string>
 </resources>
