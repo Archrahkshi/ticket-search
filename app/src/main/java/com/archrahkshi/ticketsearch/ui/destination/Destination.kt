@@ -1,4 +1,4 @@
-package com.archrahkshi.ticketsearch.data.vo
+package com.archrahkshi.ticketsearch.ui.destination
 
 import android.graphics.Bitmap
 

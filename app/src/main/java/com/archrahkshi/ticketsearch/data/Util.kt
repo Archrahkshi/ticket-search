@@ -1,6 +1,6 @@
 package com.archrahkshi.ticketsearch.data
 
-import com.archrahkshi.ticketsearch.core.getDefaultLocale
+import com.archrahkshi.ticketsearch.getDefaultLocale
 import java.text.SimpleDateFormat
 
 fun getTimeFromDate(date: String): String =
