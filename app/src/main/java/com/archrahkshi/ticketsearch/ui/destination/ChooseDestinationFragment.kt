@@ -2,10 +2,13 @@ package com.archrahkshi.ticketsearch.ui.destination
 
 import android.graphics.BitmapFactory.decodeStream
 import android.os.Bundle
+import android.view.KeyEvent.ACTION_DOWN
+import android.view.KeyEvent.KEYCODE_ENTER
 import android.view.LayoutInflater
 import android.view.View
 import android.view.View.OnClickListener
 import android.view.ViewGroup
+import android.view.inputmethod.EditorInfo.IME_ACTION_DONE
 import androidx.annotation.RawRes
 import androidx.appcompat.content.res.AppCompatResources.getDrawable
 import androidx.core.bundle.bundleOf
@@ -39,6 +42,16 @@ class ChooseDestinationFragment : BottomSheetDialogFragment() {
         views.departureText.text = arguments?.getString(DEPARTURE_TEXT_KEY, "")
         views.clearIcon.setOnClickListener {
             views.destinationTextField.text.clear()
+        }
+        views.destinationTextField.setOnEditorActionListener { v, actionId, event ->
+            val isEnterKeyPressed =
+                event?.keyCode == KEYCODE_ENTER && event.action == ACTION_DOWN
+            if (actionId == IME_ACTION_DONE || isEnterKeyPressed) {
+                navigateToSearch(v.text.toString())
+                true
+            } else {
+                false
+            }
         }
         with(views.popularDestinations) {
             layoutManager = LinearLayoutManager(context)

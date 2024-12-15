@@ -15,7 +15,8 @@
         android:src="@drawable/pull_icon"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="ImageContrastCheck" />
 
     <View
         android:id="@+id/search_outer_box"
@@ -98,11 +99,14 @@
         android:background="@null"
         android:digits="АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯабвгдеёжзийклмнопрстуфхцчшщъыьэюя"
         android:hint="@string/to_turkey"
+        android:imeOptions="actionDone"
+        android:importantForAutofill="no"
         android:inputType="text"
         app:layout_constraintBottom_toBottomOf="@id/search_inner_box"
         app:layout_constraintEnd_toStartOf="@+id/clear_icon"
         app:layout_constraintStart_toEndOf="@id/search_icon"
-        app:layout_constraintTop_toBottomOf="@id/search_box_separator" />
+        app:layout_constraintTop_toBottomOf="@id/search_box_separator"
+        tools:ignore="TouchTargetSizeCheck" />
 
     <ImageView
         android:id="@+id/clear_icon"
