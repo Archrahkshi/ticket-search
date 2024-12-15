@@ -1,4 +1,4 @@
-package com.archrahkshi.ticketsearch.data.vo
+package com.archrahkshi.ticketsearch.domain.vo
 
 data class FlattenedOffer(
     val id: Int,

@@ -3,8 +3,8 @@ package com.archrahkshi.ticketsearch.data.repositoryimpl
 import com.archrahkshi.ticketsearch.core.network.ApiInterface
 import com.archrahkshi.ticketsearch.data.getTimeDifference
 import com.archrahkshi.ticketsearch.data.getTimeFromDate
-import com.archrahkshi.ticketsearch.data.vo.SimplifiedTicket
 import com.archrahkshi.ticketsearch.domain.repository.TicketRepository
+import com.archrahkshi.ticketsearch.domain.vo.SimplifiedTicket
 
 class TicketRepositoryImpl(private val apiClient: ApiInterface) : TicketRepository {
     override suspend fun getTickets() = apiClient.getTickets().tickets.map {
