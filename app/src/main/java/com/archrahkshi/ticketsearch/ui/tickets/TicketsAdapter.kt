@@ -5,8 +5,8 @@ import android.view.ViewGroup
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
-import com.archrahkshi.ticketsearch.data.vo.SimplifiedTicket
 import com.archrahkshi.ticketsearch.databinding.ItemTicketBinding
+import com.archrahkshi.ticketsearch.domain.vo.SimplifiedTicket
 import com.archrahkshi.ticketsearch.ui.applyPriceTemplate
 
 class TicketsAdapter(

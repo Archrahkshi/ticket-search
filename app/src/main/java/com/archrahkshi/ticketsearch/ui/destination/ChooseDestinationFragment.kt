@@ -14,7 +14,6 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView.VERTICAL
 import com.archrahkshi.ticketsearch.R
-import com.archrahkshi.ticketsearch.data.vo.Destination
 import com.archrahkshi.ticketsearch.databinding.FragmentChooseDestinationBinding
 import com.archrahkshi.ticketsearch.ui.DEPARTURE_TEXT_KEY
 import com.archrahkshi.ticketsearch.ui.DESTINATION_TEXT_KEY

@@ -12,8 +12,8 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.commit
 import androidx.lifecycle.lifecycleScope
 import com.archrahkshi.ticketsearch.R
-import com.archrahkshi.ticketsearch.core.getDefaultLocale
 import com.archrahkshi.ticketsearch.databinding.FragmentSearchBinding
+import com.archrahkshi.ticketsearch.getDefaultLocale
 import com.archrahkshi.ticketsearch.ui.BaseFragment
 import com.archrahkshi.ticketsearch.ui.DEPARTURE_DATE_KEY
 import com.archrahkshi.ticketsearch.ui.DEPARTURE_TEXT_KEY

@@ -3,7 +3,6 @@ package com.archrahkshi.ticketsearch.ui.destination
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.archrahkshi.ticketsearch.data.vo.Destination
 import com.archrahkshi.ticketsearch.databinding.ItemPopularDestinationBinding
 
 class PopularDestinationsAdapter(

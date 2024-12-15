@@ -1,4 +1,4 @@
-package com.archrahkshi.ticketsearch.core
+package com.archrahkshi.ticketsearch
 
 import java.util.Locale
 

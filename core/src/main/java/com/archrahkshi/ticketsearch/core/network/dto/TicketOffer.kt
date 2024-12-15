@@ -1,11 +1,11 @@
-package com.archrahkshi.ticketsearch.data.dto
+package com.archrahkshi.ticketsearch.core.network.dto
 
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class Offer(
+data class TicketOffer(
     val id: Int,
     val title: String,
-    val town: String,
+    val timeRange: List<String>,
     val price: Price
 )

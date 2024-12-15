@@ -1,4 +1,4 @@
-package com.archrahkshi.ticketsearch.data.dto
+package com.archrahkshi.ticketsearch.core.network.dto
 
 import kotlinx.serialization.Serializable
 

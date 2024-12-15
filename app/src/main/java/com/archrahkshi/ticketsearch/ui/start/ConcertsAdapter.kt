@@ -4,8 +4,8 @@ import android.graphics.Bitmap
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.archrahkshi.ticketsearch.data.vo.FlattenedOffer
 import com.archrahkshi.ticketsearch.databinding.ItemConcertBinding
+import com.archrahkshi.ticketsearch.domain.vo.FlattenedOffer
 import com.archrahkshi.ticketsearch.ui.applyPriceTemplate
 
 class ConcertsAdapter(
