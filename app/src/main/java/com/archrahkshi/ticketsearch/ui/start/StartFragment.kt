@@ -3,9 +3,12 @@ package com.archrahkshi.ticketsearch.ui.start
 import android.content.Context.MODE_PRIVATE
 import android.graphics.BitmapFactory.decodeStream
 import android.os.Bundle
+import android.view.KeyEvent.ACTION_DOWN
+import android.view.KeyEvent.KEYCODE_ENTER
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.EditorInfo.IME_ACTION_DONE
 import androidx.appcompat.content.res.AppCompatResources.getDrawable
 import androidx.core.content.edit
 import androidx.core.os.bundleOf
@@ -30,20 +33,28 @@ class StartFragment : BaseFragment<FragmentStartBinding>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         with(views.departureTextField) {
-            val sharedPreferences = requireActivity().getPreferences(MODE_PRIVATE)
-            setText(sharedPreferences.getString(DEPARTURE_TEXT_KEY, ""))
+            setText(
+                requireActivity().getPreferences(MODE_PRIVATE).getString(DEPARTURE_TEXT_KEY, "")
+            )
             setOnFocusChangeListener { _, hasFocus ->
                 if (!hasFocus) {
-                    sharedPreferences.edit {
-                        putString(DEPARTURE_TEXT_KEY, text.toString())
-                    }
+                    saveDepartureText(text.toString())
                 }
             }
             views.destinationText.setOnClickListener {
                 if (text.isNotEmpty()) {
-                    ChooseDestinationFragment().apply {
-                        arguments = bundleOf(DEPARTURE_TEXT_KEY to text.toString())
-                    }.show(parentFragmentManager, null)
+                    openDestinationFragment(text.toString())
+                }
+            }
+            setOnEditorActionListener { _, actionId, event ->
+                val isEnterKeyPressed =
+                    event?.keyCode == KEYCODE_ENTER && event.action == ACTION_DOWN
+                if (actionId == IME_ACTION_DONE || isEnterKeyPressed) {
+                    saveDepartureText(text.toString())
+                    openDestinationFragment(text.toString())
+                    true
+                } else {
+                    false
                 }
             }
         }
@@ -58,6 +69,18 @@ class StartFragment : BaseFragment<FragmentStartBinding>() {
                 }
             )
         }
+    }
+
+    private fun saveDepartureText(text: String) {
+        requireActivity().getPreferences(MODE_PRIVATE).edit {
+            putString(DEPARTURE_TEXT_KEY, text)
+        }
+    }
+
+    private fun openDestinationFragment(text: String) {
+        ChooseDestinationFragment().apply {
+            arguments = bundleOf(DEPARTURE_TEXT_KEY to text)
+        }.show(parentFragmentManager, null)
     }
 
     private fun getImages() =

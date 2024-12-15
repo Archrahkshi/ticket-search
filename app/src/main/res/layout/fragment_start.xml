@@ -74,6 +74,8 @@
         android:background="@null"
         android:digits="АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯабвгдеёжзийклмнопрстуфхцчшщъыьэюя"
         android:hint="@string/from_moscow"
+        android:imeOptions="actionDone"
+        android:importantForAutofill="no"
         android:inputType="text"
         app:layout_constraintBottom_toTopOf="@id/search_box_separator"
         app:layout_constraintEnd_toEndOf="@id/search_box_separator"
