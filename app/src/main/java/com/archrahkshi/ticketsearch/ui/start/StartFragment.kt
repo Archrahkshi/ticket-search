@@ -12,6 +12,7 @@ import android.view.inputmethod.EditorInfo.IME_ACTION_DONE
 import androidx.appcompat.content.res.AppCompatResources.getDrawable
 import androidx.core.content.edit
 import androidx.core.os.bundleOf
+import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -20,6 +21,7 @@ import com.archrahkshi.ticketsearch.R
 import com.archrahkshi.ticketsearch.databinding.FragmentStartBinding
 import com.archrahkshi.ticketsearch.ui.BaseFragment
 import com.archrahkshi.ticketsearch.ui.DEPARTURE_TEXT_KEY
+import com.archrahkshi.ticketsearch.ui.MainActivity
 import com.archrahkshi.ticketsearch.ui.destination.ChooseDestinationFragment
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -32,6 +34,7 @@ class StartFragment : BaseFragment<FragmentStartBinding>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        (requireActivity() as MainActivity).showLoading()
         with(views.departureTextField) {
             setText(
                 requireActivity().getPreferences(MODE_PRIVATE).getString(DEPARTURE_TEXT_KEY, "")
@@ -60,14 +63,16 @@ class StartFragment : BaseFragment<FragmentStartBinding>() {
         }
         with(views.concerts) {
             layoutManager = LinearLayoutManager(context, HORIZONTAL, false)
-            lifecycleScope.launch {
-                adapter = ConcertsAdapter(viewModel.getOffers(), getImages())
-            }
             addItemDecoration(
                 DividerItemDecoration(context, HORIZONTAL).apply {
                     getDrawable(context, R.drawable.concert_list_divider)?.let(::setDrawable)
                 }
             )
+            lifecycleScope.launch {
+                adapter = ConcertsAdapter(viewModel.getOffers(), getImages())
+                (requireActivity() as MainActivity).hideLoading()
+                views.concerts.isVisible = true
+            }
         }
     }
 

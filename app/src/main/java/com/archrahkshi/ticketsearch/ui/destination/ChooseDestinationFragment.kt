@@ -105,7 +105,7 @@ class ChooseDestinationFragment : BottomSheetDialogFragment() {
     private fun navigateToSearch(destinationText: String) {
         dismiss()
         parentFragmentManager.commit {
-            add(
+            replace(
                 R.id.fragment_container,
                 SearchFragment::class.java,
                 bundleOf(

@@ -50,5 +50,4 @@
         android:layout_weight="1"
         android:drawableTop="@drawable/profile"
         android:text="@string/profile" />
-
 </LinearLayout>
