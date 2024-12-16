@@ -15,6 +15,7 @@ import com.archrahkshi.ticketsearch.ui.BaseFragment
 import com.archrahkshi.ticketsearch.ui.DEPARTURE_DATE_KEY
 import com.archrahkshi.ticketsearch.ui.DEPARTURE_TEXT_KEY
 import com.archrahkshi.ticketsearch.ui.DESTINATION_TEXT_KEY
+import com.archrahkshi.ticketsearch.ui.MainActivity
 import com.archrahkshi.ticketsearch.ui.PASSENGER_COUNT_KEY
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -27,6 +28,7 @@ class TicketsFragment : BaseFragment<FragmentTicketsBinding>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        (requireActivity() as MainActivity).showLoading()
         views.backArrow.setOnClickListener {
             parentFragmentManager.popBackStack()
         }
@@ -43,14 +45,15 @@ class TicketsFragment : BaseFragment<FragmentTicketsBinding>() {
         }
         with(views.tickets) {
             layoutManager = LinearLayoutManager(context)
-            lifecycleScope.launch {
-                adapter = TicketsAdapter(viewModel.getTickets())
-            }
             addItemDecoration(
                 DividerItemDecoration(context, VERTICAL).apply {
                     getDrawable(context, R.drawable.ticket_list_divider)?.let(::setDrawable)
                 }
             )
+            lifecycleScope.launch {
+                adapter = TicketsAdapter(viewModel.getTickets())
+                (requireActivity() as MainActivity).hideLoading()
+            }
         }
     }
 }

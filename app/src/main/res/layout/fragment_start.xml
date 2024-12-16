@@ -121,9 +121,12 @@
         android:orientation="horizontal"
         android:paddingStart="16dp"
         android:paddingEnd="16dp"
+        android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/concerts_title"
-        tools:listitem="@layout/item_concert" />
+        tools:itemCount="1"
+        tools:listitem="@layout/item_concert"
+        tools:visibility="visible" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

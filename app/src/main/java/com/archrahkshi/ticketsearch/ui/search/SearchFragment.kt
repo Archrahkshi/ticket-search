@@ -18,6 +18,7 @@ import com.archrahkshi.ticketsearch.ui.BaseFragment
 import com.archrahkshi.ticketsearch.ui.DEPARTURE_DATE_KEY
 import com.archrahkshi.ticketsearch.ui.DEPARTURE_TEXT_KEY
 import com.archrahkshi.ticketsearch.ui.DESTINATION_TEXT_KEY
+import com.archrahkshi.ticketsearch.ui.MainActivity
 import com.archrahkshi.ticketsearch.ui.PASSENGER_COUNT_KEY
 import com.archrahkshi.ticketsearch.ui.applyPriceTemplate
 import com.archrahkshi.ticketsearch.ui.tickets.TicketsFragment
@@ -38,6 +39,7 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        (requireActivity() as MainActivity).showLoading()
         with(views) {
             // Setup directions
             backArrow.setOnClickListener {
@@ -95,7 +97,7 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>() {
             updateTickets()
             viewAllTickets.setOnClickListener {
                 parentFragmentManager.commit {
-                    add(
+                    replace(
                         R.id.fragment_container,
                         TicketsFragment::class.java,
                         bundleOf(
@@ -129,6 +131,7 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>() {
                 airline3.departures.text = ticketOffers[2].timeRange.joinToString(" ")
             }
         }
+        (requireActivity() as? MainActivity)?.hideLoading()
     }
 
     private fun chooseDate(view: View, isReturnDate: Boolean = false) {
