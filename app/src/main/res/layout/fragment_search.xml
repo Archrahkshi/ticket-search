@@ -4,14 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/black"
-    android:padding="16dp">
+    android:background="@color/black">
 
     <View
         android:id="@+id/search_outer_box"
         android:layout_width="0dp"
         android:layout_height="122dp"
-        android:layout_marginTop="63dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="79dp"
+        android:layout_marginEnd="16dp"
         android:background="@drawable/rounded_rectangle_shape"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -19,9 +20,11 @@
 
     <View
         android:id="@+id/search_inner_box"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="90dp"
         android:layout_margin="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
         android:background="@drawable/rounded_rectangle_shape"
         android:backgroundTint="@color/grey_4"
         app:layout_constraintBottom_toBottomOf="@id/search_outer_box"
@@ -60,10 +63,13 @@
         android:layout_height="44dp"
         android:layout_marginEnd="8dp"
         android:background="@null"
+        android:ellipsize="end"
         android:gravity="center_vertical"
+        android:hint="@string/from_moscow"
+        android:singleLine="true"
         app:layout_constraintBottom_toTopOf="@id/search_box_separator"
-        app:layout_constraintEnd_toStartOf="@+id/change_direction_icon"
-        app:layout_constraintStart_toStartOf="@+id/search_box_separator"
+        app:layout_constraintEnd_toStartOf="@id/change_direction_icon"
+        app:layout_constraintStart_toStartOf="@id/search_box_separator"
         app:layout_constraintTop_toTopOf="@id/search_inner_box"
         tools:text="Минск" />
 
@@ -75,12 +81,14 @@
         android:layout_marginEnd="8dp"
         android:background="@null"
         android:digits="АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯабвгдеёжзийклмнопрстуфхцчшщъыьэюя"
+        android:ellipsize="end"
         android:hint="@string/to_turkey"
         android:importantForAutofill="no"
         android:inputType="text"
+        android:singleLine="true"
         app:layout_constraintBottom_toBottomOf="@id/search_inner_box"
-        app:layout_constraintEnd_toStartOf="@+id/clear_icon"
-        app:layout_constraintStart_toStartOf="@+id/search_box_separator"
+        app:layout_constraintEnd_toStartOf="@id/clear_icon"
+        app:layout_constraintStart_toStartOf="@id/search_box_separator"
         app:layout_constraintTop_toBottomOf="@id/search_box_separator"
         tools:ignore="TouchTargetSizeCheck" />
 
@@ -89,9 +97,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:contentDescription="@string/change_direction_icon"
-        app:layout_constraintBottom_toTopOf="@+id/search_box_separator"
-        app:layout_constraintEnd_toEndOf="@+id/search_box_separator"
-        app:layout_constraintTop_toTopOf="@+id/search_inner_box"
+        app:layout_constraintBottom_toTopOf="@id/search_box_separator"
+        app:layout_constraintEnd_toEndOf="@id/search_box_separator"
+        app:layout_constraintTop_toTopOf="@id/search_inner_box"
         app:srcCompat="@drawable/arrows" />
 
     <ImageView
@@ -105,13 +113,17 @@
         app:layout_constraintTop_toBottomOf="@+id/search_box_separator" />
 
     <HorizontalScrollView
-        android:id="@+id/scrollView2"
+        android:id="@+id/search_parameters_container"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
+        android:clipToPadding="false"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:scrollbars="none"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/search_outer_box">
+        app:layout_constraintTop_toBottomOf="@id/search_outer_box">
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -158,17 +170,19 @@
     </HorizontalScrollView>
 
     <LinearLayout
-        android:id="@+id/linearLayout2"
+        android:id="@+id/direct_flights_container"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
         android:background="@drawable/rounded_rectangle_shape"
         android:backgroundTint="@color/grey_1"
         android:orientation="vertical"
         android:padding="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/scrollView2">
+        app:layout_constraintTop_toBottomOf="@id/search_parameters_container">
 
         <TextView
             android:id="@+id/direct_flights_title"
@@ -210,7 +224,9 @@
         style="@style/ButtonText1"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
         android:background="@drawable/rounded_rectangle_shape"
         android:backgroundTint="@color/blue"
         android:gravity="center"
@@ -218,6 +234,5 @@
         android:text="@string/view_all_tickets"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
-
+        app:layout_constraintTop_toBottomOf="@id/direct_flights_container" />
 </androidx.constraintlayout.widget.ConstraintLayout>

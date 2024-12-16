@@ -45,10 +45,19 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>() {
             }
             departureText.text = arguments?.getString(DEPARTURE_TEXT_KEY, "")
             destinationTextField.setText(arguments?.getString(DESTINATION_TEXT_KEY, ""))
+            destinationTextField.setOnFocusChangeListener { _, hasFocus ->
+                if (!hasFocus) {
+                    updateTickets()
+                }
+            }
             changeDirectionIcon.setOnClickListener {
                 val temp = departureText.text
                 departureText.text = destinationTextField.text
                 destinationTextField.setText(temp)
+                updateTickets()
+            }
+            clearIcon.setOnClickListener {
+                destinationTextField.text.clear()
             }
 
             // Setup search parameters
@@ -60,9 +69,8 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>() {
                 chooseDate(view)
             }
             returnDate.icon.setImageResource(R.drawable.plus)
-            returnDate.title.text = viewModel.selectedReturnDate.value?.let {
-                getString(R.string.back)
-            }
+            returnDate.title.text = viewModel.selectedReturnDate.value?.let(::getColoredDate)
+                ?: getString(R.string.back)
             viewModel.selectedReturnDate.observe(viewLifecycleOwner) {
                 returnDate.title.text = it?.let(::getColoredDate) ?: getString(R.string.back)
             }
@@ -84,22 +92,7 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>() {
             filters.title.text = getString(R.string.filters)
 
             // Setup ticket offers
-            airline1.logo.setImageResource(R.drawable.airline_logo_red)
-            airline2.logo.setImageResource(R.drawable.airline_logo_blue)
-            airline3.logo.setImageResource(R.drawable.airline_logo_white)
-            lifecycleScope.launch {
-                val ticketOffers = viewModel.getTicketOffers()
-                airline1.title.text = ticketOffers[0].title
-                airline1.price.text = applyPriceTemplate(view.context, ticketOffers[0].price)
-                airline1.departures.text = ticketOffers[0].timeRange.joinToString(" ")
-                airline2.title.text = ticketOffers[1].title
-                airline2.price.text = applyPriceTemplate(view.context, ticketOffers[1].price)
-                airline2.departures.text = ticketOffers[1].timeRange.joinToString(" ")
-                airline3.title.text = ticketOffers[2].title
-                airline3.price.text = applyPriceTemplate(view.context, ticketOffers[2].price)
-                airline3.departures.text = ticketOffers[2].timeRange.joinToString(" ")
-            }
-
+            updateTickets()
             viewAllTickets.setOnClickListener {
                 parentFragmentManager.commit {
                     add(
@@ -114,6 +107,26 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>() {
                     )
                     addToBackStack(null)
                 }
+            }
+        }
+    }
+
+    private fun updateTickets() {
+        with(views) {
+            airline1.logo.setImageResource(R.drawable.airline_logo_red)
+            airline2.logo.setImageResource(R.drawable.airline_logo_blue)
+            airline3.logo.setImageResource(R.drawable.airline_logo_white)
+            lifecycleScope.launch {
+                val ticketOffers = viewModel.getTicketOffers()
+                airline1.title.text = ticketOffers[0].title
+                airline1.price.text = applyPriceTemplate(requireContext(), ticketOffers[0].price)
+                airline1.departures.text = ticketOffers[0].timeRange.joinToString(" ")
+                airline2.title.text = ticketOffers[1].title
+                airline2.price.text = applyPriceTemplate(requireContext(), ticketOffers[1].price)
+                airline2.departures.text = ticketOffers[1].timeRange.joinToString(" ")
+                airline3.title.text = ticketOffers[2].title
+                airline3.price.text = applyPriceTemplate(requireContext(), ticketOffers[2].price)
+                airline3.departures.text = ticketOffers[2].timeRange.joinToString(" ")
             }
         }
     }
